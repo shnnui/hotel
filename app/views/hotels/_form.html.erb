@@ -1,0 +1,212 @@
+<%= form_with(model: hotel, local: true) do |form| %>
+  <% if hotel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+
+      <ul>
+      <% hotel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :id %>
+    <%= form.text_field :id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ota_channel_id %>
+    <%= form.text_field :ota_channel_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :third_party_hotel_id %>
+    <%= form.text_field :third_party_hotel_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hotel_brand_id %>
+    <%= form.text_field :hotel_brand_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :open_at %>
+    <%= form.datetime_select :open_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :close_at %>
+    <%= form.datetime_select :close_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fax %>
+    <%= form.text_field :fax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_economic %>
+    <%= form.check_box :is_economic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_apartmen %>
+    <%= form.check_box :is_apartmen %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reocar_city_id %>
+    <%= form.number_field :reocar_city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_name %>
+    <%= form.text_field :city_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.text_field :city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_zone %>
+    <%= form.text_field :business_zone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_zone_id %>
+    <%= form.text_field :business_zone_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attached_business_zone %>
+    <%= form.text_field :attached_business_zone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :district %>
+    <%= form.text_field :district %>
+  </div>
+
+  <div class="field">
+    <%= form.label :district_id %>
+    <%= form.text_field :district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :baidu_location %>
+    <%= form.text_field :baidu_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :google_location %>
+    <%= form.text_field :google_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :star %>
+    <%= form.number_field :star %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_cards %>
+    <%= form.text_field :credit_cards %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_count %>
+    <%= form.number_field :review_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_good %>
+    <%= form.number_field :review_good %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_poor %>
+    <%= form.number_field :review_poor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_score %>
+    <%= form.text_field :review_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :intro %>
+    <%= form.text_area :intro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :traffic %>
+    <%= form.text_field :traffic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_coupon %>
+    <%= form.check_box :has_coupon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :themes %>
+    <%= form.text_field :themes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :room_total %>
+    <%= form.number_field :room_total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :facilities %>
+    <%= form.text_area :facilities %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stay_leave_info %>
+    <%= form.text_field :stay_leave_info %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recommend_level %>
+    <%= form.number_field :recommend_level %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
