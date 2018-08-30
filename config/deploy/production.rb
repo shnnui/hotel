@@ -59,3 +59,12 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+server "43.226.75.169", user: "deploy", roles: %w{app db web}, my_property: :my_value
+
+set :ssh_options, {
+  keys: %w(~/.ssh/id_rsa),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+  #password: "3304,6890"
+}

@@ -1,0 +1,68 @@
+FROM ruby:2.5
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN mkdir /myapp
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+COPY . /myapp
+
+
+# Install rbenv
+RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
+RUN echo '# rbenv setup' > /etc/profile.d/rbenv.sh
+RUN echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/profile.d/rbenv.sh
+RUN echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> /etc/profile.d/rbenv.sh
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+RUN chmod +x /etc/profile.d/rbenv.sh
+RUN /etc/profile.d/rbenv.sh
+
+# install ruby-build
+RUN mkdir /usr/local/rbenv/plugins
+RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
+RUN /usr/local/rbenv/plugins/ruby-build/install.sh
+
+ENV PATH /usr/local/rbenv/shims:/usr/local/rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+
+# 使用Ruby China的RubyGems（境外服务器请略过）
+RUN gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+
+# 接着安装 bundler gem
+RUN gem install bundler
+
+# 同样使用gems.ruby-china.org
+RUN bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+
+
+# Install rvm, ruby, bundler
+#RUN curl -sSL https://get.rvm.io | bash -s stable
+#RUN /bin/bash -l -c "rvm requirements"
+#RUN echo "source ~/.bashrc" >>  ~/.bash_profile
+#RUN echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+#RUN /bin/bash -l -c "source ~/.bashrc"
+#RUN /bin/bash -l -c "rvm install 2.5.1"
+#RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
+#RUN /bin/bash -l -c "rvm default 2.5.1"
+
+
+# Add configuration files in repository to filesystem
+ADD config/container/nginx-sites.conf /etc/nginx/sites-enabled/default
+ADD config/container/start-server.sh /usr/bin/start-server
+RUN chmod +x /usr/bin/start-server
+
+# Add rails project to project directory
+ADD ./ /rails
+
+# set WORKDIR
+WORKDIR /rails
+
+# bundle install
+RUN /bin/bash -l -c "bundle install"
+
+# Publish port 80
+EXPOSE 80
+
+# Startup commands
+ENTRYPOINT /usr/bin/start-server

@@ -4,7 +4,7 @@ ruby '2.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '0.21.0'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.7'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,7 +39,8 @@ group :development, :test do
 
   # 对`passenger`与`rbenv`的支持
   gem 'capistrano-passenger'
-  gem 'rvm-capistrano'
+  #gem 'capistrano-rvm'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
