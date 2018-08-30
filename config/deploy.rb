@@ -1,14 +1,15 @@
+`ssh-add`
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "elong_hotel"
+set :repo_url, "git@github.com:shnnui/hotel.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/home/deploy/hotel"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -21,13 +22,13 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+append :linked_files, "config/database.yml", "config/secrets.yml"
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+#set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -37,3 +38,11 @@ set :repo_url, "git@example.com:me/my_repo.git"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+#set :default_environment, {
+#  'PATH'         => "/usr/local/rvm/gems/ruby-2.5.1/bin:/usr/local/rvm/gems/ruby-2.5.1@global/bin:/usr/local/rvm/rubies/ruby-2.5.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/rvm/bin",
+#  'RUBY_VERSION' => 'ruby 2.5.1',
+#  'GEM_HOME'     => '~/.rvm/gems/ruby 2.5.1',
+#  'GEM_PATH'     => '/.rvm/gems/ruby 2.5.1',
+#  'BUNDLE_PATH'  => '/.rvm/gems/ruby 2.5.1'  # If you are using bundler.
+#}
